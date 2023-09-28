@@ -9,10 +9,11 @@ public class ParkingLot implements IParkingLot{
 
         int totalCharge = 0;
 
-        if (days == 0 && hours == 0 && minutes < 30) {
+        if (days == 0 && hours == 0 && minutes <= 30) {
             return totalCharge;
+
         } else {
-            totalCharge += days * dailyRate;
+            totalCharge += days*dailyRate;
 
             if (hours > 7 || (hours == 7 && minutes>0)) {
                 totalCharge += dailyRate;

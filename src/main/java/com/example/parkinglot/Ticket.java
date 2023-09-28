@@ -8,7 +8,7 @@ public class Ticket {
 
     public int calculateDurationDays(String entry, String exit) {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-ddHHmm");
 
         String entryTimeTicket = entry;
         LocalDateTime dateAndTimeOne = LocalDateTime.parse(entryTimeTicket, formatter);
@@ -22,7 +22,7 @@ public class Ticket {
     }
     public int calculateDurationHours(String entry, String exit) {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-ddHHmm");
 
         String entryTimeTicket = entry;
         LocalDateTime dateAndTimeOne = LocalDateTime.parse(entryTimeTicket, formatter);
@@ -37,7 +37,7 @@ public class Ticket {
 
     public int calculateDurationMinutes(String entry, String exit) {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-ddHHmm");
 
         String entryTimeTicket = entry;
         LocalDateTime dateAndTimeOne = LocalDateTime.parse(entryTimeTicket, formatter);
