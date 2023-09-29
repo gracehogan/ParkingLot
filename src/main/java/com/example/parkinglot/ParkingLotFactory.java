@@ -2,28 +2,26 @@ package com.example.parkinglot;
 
 public class ParkingLotFactory {
 
-    public IParkingLot createParkingLot(String parkingLotSelection) {
+    public IParkingLot createParkingLot(String buttonSelection) {
 
-
-        if (parkingLotSelection == null || parkingLotSelection.isEmpty())
+        if (buttonSelection == null || buttonSelection.isEmpty())
             return null;
 
-        switch (parkingLotSelection) {
-            case "ParkingLot":
+        switch (buttonSelection) {
+            case "parkingLot":
                 return new ParkingLot();
 
-            case "LongTermParking":
+            case "longTermLot":
                 return new LongTermParking();
 
-            case "NearbyParking":
+            case "nearbyParkingLot":
                 return new NearbyParking();
 
-            case "ShortStayParking":
+            case "shortTermLot":
                 return new ShortStayParking();
 
             default:
                 throw new IllegalArgumentException("Unknown parking lot.");
-
 
         }
 

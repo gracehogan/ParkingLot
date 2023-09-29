@@ -3,58 +3,33 @@ package com.example.parkinglot;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-
-import java.time.format.DateTimeFormatter;
 
 public class ParkingLotView {
     private Label entryLabel;
-    private TextField entryTime;
+    private TilePane r1;
+    private DatePicker d1;
+    private ComboBox hourEntry;
+    private ComboBox minutesEntry;
     private Label exitLabel;
-    private TextField exitTime;
-
+    private TilePane r2;
+    private DatePicker d2;
+    private ComboBox hourExit;
+    private ComboBox minutesExit;
     private Label lotSelectionLabel;
     private RadioButton defaultLot;
-
     private RadioButton longStayLot;
-
     private RadioButton nearbyLot;
-
     private RadioButton shortStayLot;
     private Button calculateButton;
     private Label chargeLabel;
 
-
     private IParkingLot parkingLot;
-    private IParkingLot longTermLot;
-    private IParkingLot nearbyParkingLot;
-    private IParkingLot shortTermLot;
 
-    private TilePane r1;
-
-    private DatePicker d1;
-
-    private ComboBox hourEntry;
-
-    private ComboBox minutesEntry;
-    private TilePane r2;
-
-    private DatePicker d2;
-
-    private ComboBox hourExit;
-
-    private ComboBox minutesExit;
-
-    public ParkingLotView(IParkingLot parkingLot, IParkingLot longTermLot, IParkingLot nearbyParkingLot, IParkingLot shortTermLot) {
+    public ParkingLotView(IParkingLot parkingLot) {
         this.parkingLot = parkingLot;
-        this.longTermLot = longTermLot;
-        this.nearbyParkingLot = nearbyParkingLot;
-        this.shortTermLot = shortTermLot;
 
         initialiseUIComponents();
     }
@@ -87,10 +62,7 @@ public class ParkingLotView {
                 "53", "54", "55", "56",
                 "57", "58", "59", "60");
 
-
-        //entryTime = new TextField("dd-MM-yyyy HH:mm");
         exitLabel = new Label("Please enter your date and time of exit");
-        //exitTime = new TextField("dd-MM-yyyy HH:mm");
         r2 = new TilePane();
         d2 = new DatePicker();
         hourExit = new ComboBox<>();
@@ -131,11 +103,6 @@ public class ParkingLotView {
         shortStayLot.setToggleGroup(tg);
         calculateButton = new Button("Calculate cost");
         chargeLabel = new Label();
-
-        RadioButton selectedRadioButton =
-                (RadioButton) tg.getSelectedToggle();
-
-
     }
 
     void initialiseLayout(Stage stage) {
@@ -145,8 +112,6 @@ public class ParkingLotView {
         vBox.setAlignment(Pos.CENTER);
         Scene scene = new Scene(vBox, 500, 500);
 
-
-        //Staging
         stage.setTitle("Parking Lot Cost Calculator");
         stage.setScene(scene);
         stage.show();
@@ -170,23 +135,22 @@ public class ParkingLotView {
 
     public void displayCharge(String message) {
         chargeLabel.setText(message);
-
     }
 
-    public IParkingLot getButtonSelection() {
+    public String getButtonSelection() {
 
+        if (defaultLot.isSelected()){
+            return "parkingLot";
+        }
         if (longStayLot.isSelected()) {
-            return longTermLot;
+            return  "longTermLot";
         }
         if (nearbyLot.isSelected()) {
-            return nearbyParkingLot;
+            return "nearbyParkingLot";
         }
         if (shortStayLot.isSelected()) {
-            return shortTermLot;
+            return "shortTermLot";
         }
-        else
-                return parkingLot;
-
-
+        else return null;
     }
 }
