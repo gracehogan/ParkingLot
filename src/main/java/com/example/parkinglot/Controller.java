@@ -3,10 +3,7 @@ package com.example.parkinglot;
 public class Controller {
 
     private ParkingLotView view;
-
-
-    private ParkingLotFactory factory = new ParkingLotFactory();
-    IParkingLot parkingLot;
+    private IParkingLot parkingLot;
     private Ticket ticket;
 
     public Controller(ParkingLotView view, Ticket ticket, IParkingLot parkingLot) {
@@ -20,8 +17,7 @@ public class Controller {
     private void createCalculateButton() {
 
         view.getCalculateButton().setOnAction(e -> {
-            factory = new ParkingLotFactory();
-            parkingLot = factory.createParkingLot(view.getButtonSelection());
+            parkingLot = ParkingLotFactory.createParkingLot(view.getButtonSelection());
             String entryTimeString = view.getEntryTime().trim();
             String exitTimeString = view.getExitTime().trim();
             int durationDays = ticket.calculateDurationDays(entryTimeString, exitTimeString);

@@ -2,22 +2,22 @@ package com.example.parkinglot;
 
 public class ParkingLotFactory {
 
-    public IParkingLot createParkingLot(String buttonSelection) {
+    public static IParkingLot createParkingLot(LotType lotType) {
 
-        if (buttonSelection == null || buttonSelection.isEmpty())
+        if (lotType == null)
             return null;
 
-        switch (buttonSelection) {
-            case "parkingLot":
+        switch (lotType) {
+            case DEFAULTPARKING:
                 return new ParkingLot();
 
-            case "longTermLot":
+            case LONGTERMPARKING:
                 return new LongTermParking();
 
-            case "nearbyParkingLot":
+            case NEARBYPARKING:
                 return new NearbyParking();
 
-            case "shortTermLot":
+            case SHORTSTAYPARKING:
                 return new ShortStayParking();
 
             default:

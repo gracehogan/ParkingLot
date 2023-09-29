@@ -3,11 +3,14 @@ package com.example.parkinglot;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class ParkingLotView {
+    private Label welcomeLabel;
     private Label entryLabel;
     private TilePane r1;
     private DatePicker d1;
@@ -35,7 +38,8 @@ public class ParkingLotView {
     }
 
     private void initialiseUIComponents() {
-        entryLabel = new Label("Please enter your date and time of entry");
+        welcomeLabel = new Label("Please enter your details below");
+        entryLabel = new Label("Entry date/time");
         r1 = new TilePane();
         d1 = new DatePicker();
         hourEntry = new ComboBox<>();
@@ -62,7 +66,7 @@ public class ParkingLotView {
                 "53", "54", "55", "56",
                 "57", "58", "59", "60");
 
-        exitLabel = new Label("Please enter your date and time of exit");
+        exitLabel = new Label("Exit date/time");
         r2 = new TilePane();
         d2 = new DatePicker();
         hourExit = new ComboBox<>();
@@ -106,11 +110,25 @@ public class ParkingLotView {
     }
 
     void initialiseLayout(Stage stage) {
-        VBox vBox = new VBox(10, entryLabel, r1, d1, hourEntry, minutesEntry, exitLabel, r2, d2, hourExit, minutesExit,
-                lotSelectionLabel, defaultLot, longStayLot, nearbyLot, shortStayLot,
-                calculateButton, chargeLabel);
+
+        BorderPane borderPane = new BorderPane();
+        VBox vBox = new VBox(10, welcomeLabel);
+        VBox vBox1 = new VBox(10, entryLabel, r1, d1, hourEntry, minutesEntry);
         vBox.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(vBox, 500, 500);
+        VBox vBox2 = new VBox(10, exitLabel, r2, d2, hourExit, minutesExit);
+        VBox vBox3 = new VBox(10, lotSelectionLabel, defaultLot, longStayLot, nearbyLot, shortStayLot,
+                calculateButton, chargeLabel);
+
+        vBox.setAlignment(Pos.CENTER);
+        vBox1.setAlignment(Pos.CENTER);
+        vBox2.setAlignment(Pos.CENTER);
+        vBox3.setAlignment(Pos.CENTER);
+        borderPane.setTop(vBox);
+        borderPane.setLeft(vBox1);
+        borderPane.setRight(vBox2);
+        borderPane.setBottom(vBox3);
+
+        Scene scene = new Scene(borderPane, 500, 500);
 
         stage.setTitle("Parking Lot Cost Calculator");
         stage.setScene(scene);
@@ -137,19 +155,19 @@ public class ParkingLotView {
         chargeLabel.setText(message);
     }
 
-    public String getButtonSelection() {
+    public LotType getButtonSelection() {
 
         if (defaultLot.isSelected()){
-            return "parkingLot";
+            return LotType.DEFAULTPARKING;
         }
         if (longStayLot.isSelected()) {
-            return  "longTermLot";
+            return  LotType.LONGTERMPARKING;
         }
         if (nearbyLot.isSelected()) {
-            return "nearbyParkingLot";
+            return LotType.NEARBYPARKING;
         }
         if (shortStayLot.isSelected()) {
-            return "shortTermLot";
+            return LotType.SHORTSTAYPARKING;
         }
         else return null;
     }

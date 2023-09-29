@@ -12,10 +12,6 @@ public class App extends Application {
     private Controller controller;
 
     private Ticket ticket = new Ticket();
-
-
-    private ParkingLotFactory factory = new ParkingLotFactory();
-
     IParkingLot parkingLot;
     @Override
     public void start(Stage stage) throws IOException {
