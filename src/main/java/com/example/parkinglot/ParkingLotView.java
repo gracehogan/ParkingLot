@@ -1,12 +1,12 @@
 package com.example.parkinglot;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class ParkingLotView {
@@ -39,7 +39,9 @@ public class ParkingLotView {
 
     private void initialiseUIComponents() {
         welcomeLabel = new Label("Please enter your details below");
+        welcomeLabel.setFont(new Font("Arial", 15));
         entryLabel = new Label("Entry date/time");
+        entryLabel.setFont(new Font("Arial", 15));
         r1 = new TilePane();
         d1 = new DatePicker();
         hourEntry = new ComboBox<>();
@@ -67,6 +69,7 @@ public class ParkingLotView {
                 "57", "58", "59", "60");
 
         exitLabel = new Label("Exit date/time");
+        exitLabel.setFont(new Font("Arial", 15));
         r2 = new TilePane();
         d2 = new DatePicker();
         hourExit = new ComboBox<>();
@@ -93,10 +96,15 @@ public class ParkingLotView {
                 "53", "54", "55", "56",
                 "57", "58", "59", "60");
         lotSelectionLabel = new Label("Please select your parking lot");
+        lotSelectionLabel.setFont(new Font("Arial", 15));
         defaultLot = new RadioButton("Normal");
+        defaultLot.setFont(new Font("Arial", 15));
         longStayLot = new RadioButton("Long Stay");
+        longStayLot.setFont(new Font("Arial", 15));
         nearbyLot = new RadioButton("Nearby Parking");
+        nearbyLot.setFont(new Font("Arial", 15));
         shortStayLot = new RadioButton("ShortStay");
+        shortStayLot.setFont(new Font("Arial", 15));
 
         defaultLot.setSelected(true);
 
@@ -128,6 +136,8 @@ public class ParkingLotView {
         borderPane.setRight(vBox2);
         borderPane.setBottom(vBox3);
 
+
+        borderPane.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE, new CornerRadii(0), Insets.EMPTY)));
         Scene scene = new Scene(borderPane, 500, 500);
 
         stage.setTitle("Parking Lot Cost Calculator");
